@@ -1,0 +1,194 @@
+//Manipulation
+
+CREATE TABLE student (
+  id INTEGER PRIMARY KEY,
+  name TEXT UNIQUE,
+  grade INTEGER NOT NULL,
+  age INTEGER DEFAULT 10
+);
+
+-- Insert into columns in order:
+INSERT INTO table_name
+VALUES (value1, value2);
+ 
+-- Insert into columns by name:
+INSERT INTO table_name (column1, column2)
+VALUES (value1, value2);
+
+//ALTER TABLE Statement
+ALTER TABLE table_name
+ADD column_name datatype;
+
+//DELETE Statement
+DELETE FROM table_name
+WHERE some_column = some_value;
+
+//UPDATE Statement
+UPDATE table_name
+SET column1 = value1, column2 = value2
+WHERE some_column = some_value;
+////////////////////////////////////////////
+
+//Queries
+
+//SELECT Statement
+SELECT *
+FROM movies;
+
+//AS Clause
+SELECT name AS 'movie_title'
+FROM movies;
+
+//DISTINCT Clause
+SELECT DISTINCT city
+FROM contact_details;
+
+//WHERE Clause
+SELECT title
+FROM library
+WHERE pub_year = 2017;
+
+//LIKE Operator
+SELECT name
+FROM movies
+WHERE name LIKE 'Star%';
+
+//_ Wildcard
+SELECT name
+FROM movies
+WHERE name LIKE '_ove';
+
+//% Wildcard
+SELECT name
+FROM movies
+WHERE name LIKE 'The%';
+
+//NULL Values
+SELECT address
+FROM records
+WHERE address IS NOT NULL;
+
+//BETWEEN Operator
+SELECT *
+FROM movies
+WHERE year BETWEEN 1980 AND 1990;
+
+//AND Operator
+SELECT model 
+FROM cars 
+WHERE color = 'blue' 
+  AND year > 2014;
+
+//OR Operator
+SELECT name
+FROM customers 
+WHERE state = 'CA' 
+   OR state = 'NY';
+
+//ORDER BY Clause
+SELECT *
+FROM contacts
+ORDER BY birth_date DESC;
+
+//LIMIT Clause
+SELECT *
+FROM movies
+LIMIT 5;
+////////////////////////////////////////////
+
+//Aggregate Functions
+
+
+//Column References
+SELECT COUNT(*) AS 'total_movies', 
+   rating 
+FROM movies 
+GROUP BY 2 
+ORDER BY 1;
+
+//MAX() Aggregate Function
+SELECT MAX(amount) 
+FROM transactions;
+
+//SUM() Aggregate Function
+SELECT SUM(salary)
+FROM salary_disbursement;
+
+//SELECT COUNT(*)
+FROM employees
+WHERE experience < 5;
+
+//GROUP BY Clause
+SELECT rating, 
+   COUNT(*) 
+FROM movies 
+GROUP BY rating;
+
+//MIN() Aggregate Function
+SELECT MIN(amount) 
+FROM transactions;
+
+//AVG() Aggregate Function
+SELECT AVG(salary)
+FROM employees
+WHERE experience < 5;
+
+//HAVING Clause
+SELECT year, 
+   COUNT(*) 
+FROM movies 
+GROUP BY year
+HAVING COUNT(*) > 5;
+
+//ROUND() Function
+SELECT year, 
+   ROUND(AVG(rating), 2) 
+FROM movies 
+WHERE year = 2015;
+////////////////////////////////////////////
+
+//Multiple Tables
+
+//Inner Join
+SELECT * 
+FROM books
+JOIN authors
+  ON books.author_id = authors.id;
+
+//Outer Join
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+  ON table1.column_name = table2.column_name;
+
+//CROSS JOIN Clause
+SELECT shirts.shirt_color,
+   pants.pants_color
+FROM shirts
+CROSS JOIN pants;
+
+
+//UNION Clause
+SELECT name
+FROM first_names
+UNION
+SELECT name
+FROM last_names
+
+//WITH Clause
+WITH temporary_movies AS (
+   SELECT *
+   FROM movies
+)
+SELECT *
+FROM temporary_movies
+WHERE year BETWEEN 2000 AND 2020;
+
+
+
+
+
+
+
+
+
